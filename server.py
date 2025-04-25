@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -32,4 +33,5 @@ def reset():
         return jsonify({"success": True, "message": "Đã reset HWID"})
     return jsonify({"success": False, "message": "Key không tồn tại"}), 400
 
-app.run(host="0.0.0.0", port=10000)
+port = int(os.environ.get("PORT", 10000))
+app.run(host="0.0.0.0", port=port)
